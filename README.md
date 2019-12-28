@@ -53,9 +53,9 @@ Assuming X-Code developer command line tools and homebrew are already installed
 * once postgres is up and running, do
   * ` /usr/local/opt/postgres/bin/createuser -s postgres `
   * ` psql -U postgres `
-  * ` create role tutorial with createdb; `
-  * ` alter role tutorial with login; `
-  * ` create database tutorial; `
+  * ` create role boilerplate with createdb; `
+  * ` alter role boilerplate with login; `
+  * ` create database boilerplate; `
 * then run (you might need to ` bundle install ` first)
   * ` rails db:create `
   * ` rails db:schema:load `
