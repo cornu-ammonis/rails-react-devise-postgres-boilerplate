@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const Call = (method, url, data, parseCallback, options = {}) => {
+export const Call = (method, url, data, options = {}, parseCallback) => {
   return new Promise(resolve => {
     axios({
       method,
