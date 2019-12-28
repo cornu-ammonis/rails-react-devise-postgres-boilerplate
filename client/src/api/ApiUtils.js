@@ -2,10 +2,14 @@ import axios from 'axios';
 
 export const ParseApiResponse = (success, response, options) => {
   const result = { success };
+  console.log(response);
 
   if (!success) {
     // TODO: figure out if theres another path to handle here.
-    result.errors = response.response.data.errors;
+    if (response.message)
+      result.errors = [response.message];
+    else
+      result.errors = response.response.data.errors;
     return result;
   }
 
