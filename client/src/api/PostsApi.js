@@ -10,3 +10,11 @@ export const fetchPostsList = () => {
     },
   );
 };
+
+export const saveNewPost = post => {
+  return Call(
+    'post',
+    '/api/v1/posts',
+    post,
+  );
+}
