@@ -20,7 +20,7 @@ export const ParseApiResponse = (success, response, options) => {
     if (response.data[railsKey])
       result[objKey] = response.data[railsKey];
     else
-      result[objKey] = response.data;
+      result[objKey] = response.data; // means api only returned one thing
   });
 
   return result;
