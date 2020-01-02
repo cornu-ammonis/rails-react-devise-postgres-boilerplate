@@ -1,4 +1,5 @@
 import React, { Component }               from 'react'
+import { saveNewPost } from '../api/PostsApi';
 
 class NewPost extends Component {
 
@@ -15,26 +16,14 @@ class NewPost extends Component {
     });
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
-    let data = {post: this.state};
-    let token = document.querySelector('meta[name="csrf-token"]').content;
-    fetch('api/v1/posts', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-        'X-Requested-With': 'XMLHttpRequest',
-        'X-CSRF-Token': token
-      },
-      redirect: "error",
-      body: JSON.stringify(this.state)
-    })
-      .then(resp => {
-        resp.json()
-      })
-      .then(post => {
+    saveNewPost(this.state).then(result => {
+      if (result.success)
         this.props.history.push('/');
-      });
+      else
+        alert(result.errors[0]);
+    })
   }
 
   render() {
