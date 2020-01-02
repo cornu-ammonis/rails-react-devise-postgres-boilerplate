@@ -1,5 +1,14 @@
 import axios from 'axios';
 
+const forgeryToken = document.querySelector('[name="csrf-token"]') || {content: 'no-csrf-token'}
+const axiosWrapper = axios.create({
+  headers: {
+    common: {
+      'X-CSRF-Token': forgeryToken.content
+    }
+  }
+});
+
 export const ParseApiResponse = (success, response, options) => {
   const result = { success };
 
@@ -28,7 +37,7 @@ export const ParseApiResponse = (success, response, options) => {
 
 export const Call = (method, url, data, options = {}, parseCallback = ParseApiResponse) => {
   return new Promise(resolve => {
-    axios({
+    axiosWrapper({
       method,
       url,
       data
