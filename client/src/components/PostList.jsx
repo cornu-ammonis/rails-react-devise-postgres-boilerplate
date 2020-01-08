@@ -1,5 +1,6 @@
 import React, { Component }               from 'react'
 import { Link }                           from 'react-router-dom'
+import { fetchPostsList } from '../api/PostsApi';
 
 class PostList extends Component {
 
@@ -8,12 +9,12 @@ class PostList extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/v1/posts')
-      .then(posts => posts.json())
-      .then(posts => {
-        this.setState({
-          posts: posts
-        })
+    fetchPostsList()
+      .then(result => {
+        if (result.success)
+          this.setState({ posts: result.posts });
+        else
+          alert(result.errors[0]);
       })
   }
 
